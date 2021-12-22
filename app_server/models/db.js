@@ -6,10 +6,12 @@ const readline = require('readline')
 //avoid 'current Server Discover and Monitoring engine is deprecated'
 // mongoose.set('useUnifiedTopology', true)
 
+mongoose.set('debug', true);
+
 const connect = () => {
   setTimeout(() => mongoose.connect(dbURI, {
     useNewUrlParser: "true"
-  }), 1000);
+  }), 0);
 }
 
 mongoose.connection.on('connected', () => {

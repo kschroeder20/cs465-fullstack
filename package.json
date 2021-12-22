@@ -12,6 +12,14 @@
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "mongoose-data-seed": "^2.1.6",
+    "morgan": "~1.9.1",
+    "seedgoose": "^2.0.2"
+  },
+  "seedgoose": {
+    "modelBaseDirectory": "app_server/models",
+    "models": "**/*.js",
+    "data": "data",
+    "db": "mongodb://127.0.0.1/travlr"
   }
 }
