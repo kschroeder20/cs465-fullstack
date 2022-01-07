@@ -9,6 +9,12 @@ const tripsController = require('../controllers/trips');
 /* GET trips page. */
 router.get('/trips', tripsController.tripsList);
 
+/* POST trips page. */
+router.post('/trips', tripsController.tripsAddTrip);
+
+/* PUT trips page. */
+router.put('/trips/:tripCode', tripsController.tripsUpdateTrip);
+
 /* GET trip */
 router.get('/trips/:tripCode', tripsController.tripsFindByCode);
 
