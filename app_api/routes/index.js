@@ -27,6 +27,6 @@ router
 router
   .route('/trips/:tripCode')
   .get(tripsController.tripsFindByCode)
-  .post(auth, tripsController.tripsUpdateTrip);
+  .put(auth, tripsController.tripsUpdateTrip);
 
 module.exports = router;
