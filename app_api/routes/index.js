@@ -1,22 +1,32 @@
 const express = require('express');
 const router = express.Router();
-// const ctrlMain = require('../controllers/trips');
+const jwt = require('express-jwt')
+const auth = jwt({
+  secret: process.env.JWT_SECRET,
+  userProperty: 'payload',
+  algorithms: ['HS256']
+})
+
 const tripsController = require('../controllers/trips');
+const authController = require('../controllers/authentication')
 
-// /* GET home page. */
-// router.get('/', ctrlMain.index);
+/* Authentication. */
+router
+  .route('/login')
+  .post(authController.login);
 
-/* GET trips page. */
-router.get('/trips', tripsController.tripsList);
+router
+  .route('/register')
+  .post(authController.register);
 
-/* POST trips page. */
-router.post('/trips', tripsController.tripsAddTrip);
+router
+  .route('/trips')
+  .get(tripsController.tripsList)
+  .post(auth, tripsController.tripsAddTrip);
 
-/* PUT trips page. */
-router.put('/trips/:tripCode', tripsController.tripsUpdateTrip);
-
-/* GET trip */
-router.get('/trips/:tripCode', tripsController.tripsFindByCode);
-
+router
+  .route('/trips/:tripCode')
+  .get(tripsController.tripsFindByCode)
+  .post(auth, tripsController.tripsUpdateTrip);
 
 module.exports = router;
